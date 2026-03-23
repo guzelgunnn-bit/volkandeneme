@@ -7,12 +7,18 @@
   <link rel="stylesheet" href="style.css"/>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet"/>
 </head>
-<body>
+<body id="top">
 
   <!-- NAV -->
   <nav class="navbar">
-    <div class="logo">🔧 VW Özel Teknik Servis</div>
+    <div class="logo">
+      <div class="logo-icon">🔧</div>
+      <div class="logo-text">
+        <span class="logo-vw">VW Özel</span><span class="logo-ts"> Teknik Servis</span>
+      </div>
+    </div>
     <ul class="nav-links">
+      <li><a href="#top">Ana Sayfa</a></li>
       <li><a href="#hizmetler">Hizmetler</a></li>
       <li><a href="#neden">Neden Biz</a></li>
       <li><a href="#iletisim">İletişim</a></li>
@@ -27,7 +33,30 @@
       <a href="#iletisim" class="btn-primary">Randevu Al</a>
     </div>
     <div class="hero-img">
-      <img src="https://images.unsplash.com/photo-1625047509248-ec889cbff17f?w=600&q=80" alt="Teknisyen araç bakımı yapıyor"/>
+      <div class="slider">
+        <div class="slide active">
+          <img src="https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?w=600&q=80" alt="VW Golf"/>
+          <span class="slide-label">Volkswagen Golf</span>
+        </div>
+        <div class="slide">
+          <img src="https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=600&q=80" alt="VW Passat"/>
+          <span class="slide-label">Volkswagen Passat</span>
+        </div>
+        <div class="slide">
+          <img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?w=600&q=80" alt="VW Tiguan"/>
+          <span class="slide-label">Volkswagen Tiguan</span>
+        </div>
+        <div class="slide">
+          <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=600&q=80" alt="VW Polo"/>
+          <span class="slide-label">Volkswagen Polo</span>
+        </div>
+        <div class="slider-dots">
+          <span class="dot active" onclick="goSlide(0)"></span>
+          <span class="dot" onclick="goSlide(1)"></span>
+          <span class="dot" onclick="goSlide(2)"></span>
+          <span class="dot" onclick="goSlide(3)"></span>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -40,31 +69,30 @@
         <h3>Motor Bakımı</h3>
         <p>Yağ değişimi, filtre bakımı, motor revizyonu ve performans optimizasyonu.</p>
       </div>
-      <div class="card card-red">
-        <img src="https://images.unsplash.com/photo-1617469767053-d3b523a0b982?w=400&q=80" alt="Elektrik elektronik"/>
-        <h3>Elektrik & Elektronik</h3>
-        <p>ECU okuma, arıza tespit, kablo tesisatı ve sensör değişimi.</p>
-      </div>
+
       <div class="card card-green">
         <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=400&q=80" alt="Fren süspansiyon"/>
         <h3>Fren & Süspansiyon</h3>
         <p>Balata, disk, amortisör ve rot-rotil bakım ve değişimi.</p>
       </div>
-      <div class="card card-orange">
-        <img src="https://images.unsplash.com/photo-1580274455191-1c62238fa333?w=400&q=80" alt="Klima bakımı"/>
-        <h3>Klima Bakımı</h3>
-        <p>Klima gazı dolumu, kompresör kontrolü ve kabin filtresi değişimi.</p>
-      </div>
+
       <div class="card card-purple">
-        <img src="https://images.unsplash.com/photo-1504222490345-c075b7b1f9b4?w=400&q=80" alt="Periyodik bakım"/>
+        <img src="https://images.unsplash.com/photo-1493238792000-8113da705763?w=400&q=80" alt="Periyodik bakım"/>
         <h3>Periyodik Bakım</h3>
         <p>Fabrika standartlarında periyodik bakım ve detaylı araç kontrolü.</p>
       </div>
-      <div class="card card-teal">
-        <img src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=400&q=80" alt="Kaporta boya"/>
-        <h3>Kaporta & Boya</h3>
-        <p>Hasar onarımı, parça boyama ve araç detaylı temizlik hizmetleri.</p>
-      </div>
+
+    </div>
+  </section>
+
+  <!-- VIDEO -->
+  <section class="video-section">
+    <h2>Volkswagen Dünyası</h2>
+    <div class="video-wrapper">
+      <a href="https://www.youtube.com/shorts/nKRTZp-JCzQ" target="_blank" class="video-thumb">
+        <img src="https://img.youtube.com/vi/nKRTZp-JCzQ/maxresdefault.jpg" alt="Volkswagen Video"/>
+        <div class="play-btn">▶</div>
+      </a>
     </div>
   </section>
 
@@ -111,11 +139,8 @@
         <select>
           <option value="">Hizmet Seçin</option>
           <option>Motor Bakımı</option>
-          <option>Elektrik & Elektronik</option>
           <option>Fren & Süspansiyon</option>
-          <option>Klima Bakımı</option>
           <option>Periyodik Bakım</option>
-          <option>Kaporta & Boya</option>
         </select>
         <textarea placeholder="Notunuz (isteğe bağlı)" rows="3"></textarea>
         <button type="submit" class="btn-primary">Randevu Gönder</button>
@@ -126,6 +151,24 @@
   <footer>
     <p>© 2026 VW Özel Teknik Servis — Tüm hakları saklıdır.</p>
   </footer>
+
+<script>
+  let current = 0;
+  const slides = document.querySelectorAll('.slide');
+  const dots = document.querySelectorAll('.dot');
+
+  function goSlide(n) {
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current = n;
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
+  }
+
+  setInterval(() => {
+    goSlide((current + 1) % slides.length);
+  }, 3000);
+</script>
 
 </body>
 </html>
